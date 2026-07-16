@@ -447,6 +447,7 @@ const TINTAS_GEN_ALMO = [
   {id:'tg_cy_almo', nome:'Cyan (Genérico)', cor:'#00a8cc'},
   {id:'tg_ma_almo', nome:'Magenta (Genérico)', cor:'#cc0066'},
 ];
+const TINTAS_B_DGEO = [
   {id:'tb_mb_dgeo', nome:'Matte Black (B3P22A)', cor:'#333'},
   {id:'tb_pb_dgeo', nome:'Photo Black (B3P23A)', cor:'#111'},
   {id:'tb_gr_dgeo', nome:'Gray (B3P24A)', cor:'#888'},
@@ -502,7 +503,7 @@ onSnapshot(query(col,orderBy("data","desc")),snap=>{
   if(abaAtiva==='balanco') renderBalancoMensal();
   if(abaAtiva==='anual') renderBalancoAnual();
   if(abaAtiva==='periodo') renderBalancoPeriodo();
-},()=>setStatus('❌ Erro de conexão','erro'));
+},()=>setStatus('X Erro de conexão','erro'));
 
 onSnapshot(query(colMov,orderBy("data","desc")),snap=>{
   movimentacoes=snap.docs.map(d=>({id:d.id,...d.data()}));
@@ -588,7 +589,7 @@ function renderDash(){
     <div class="stat"><div class="stat-label">Total impressões</div><div class="stat-value">${total.toLocaleString('pt-BR')}</div><div class="stat-sub">${reg.length} registros</div></div>
     <div class="stat"><div class="stat-label">PIT</div><div class="stat-value">${pit.toLocaleString('pt-BR')}</div><div class="stat-sub">${total?Math.round(pit/total*100):0}% do total</div></div>
     <div class="stat"><div class="stat-label">Extra PIT</div><div class="stat-value">${extra.toLocaleString('pt-BR')}</div><div class="stat-sub">${total?Math.round(extra/total*100):0}% do total</div></div>
-    <div class="stat"><div class="stat-label">Tipo principal</div><div class="stat-value" style="font-size:14px">${dom?dom[0]:'—'}</div><div class="stat-sub">${dom?dom[1]+' unidades':'sem dados'}</div></div>`;
+    <div class="stat"><div class="stat-label">Tipo principal</div><div class="stat-value" style="font-size:14px">${dom?dom[0]:'-'}</div><div class="stat-sub">${dom?dom[1]+' unidades':'sem dados'}</div></div>`;
   barChart('chart-tipo',Object.entries(tipos).sort((a,b)=>b[1]-a[1]).slice(0,8).map(([k,v])=>({k,v})),'#3c3a8e');
   const papel={};reg.forEach(d=>{papel[d.papel]=(papel[d.papel]||0)+(d.qtd||0);});
   barChart('chart-papel',Object.entries(papel).sort((a,b)=>b[1]-a[1]).map(([k,v])=>({k,v})),'#0a6b4a');
@@ -606,13 +607,13 @@ window.renderDash=renderDash;
 
 window.salvarImpressao=async function(){
   const data=document.getElementById('f-data').value;
-  if(!data){toast('⚠ Informe a data','#c0392b');return;}
+  if(!data){toast('! Informe a data','#c0392b');return;}
   const qtd=parseInt(document.getElementById('f-qtd').value)||0;
-  if(!qtd){toast('⚠ Informe a quantidade','#c0392b');return;}
+  if(!qtd){toast('! Informe a quantidade','#c0392b');return;}
   try{
     await addDoc(col,{data,nome:document.getElementById('f-nome').value,mi:document.getElementById('f-mi').value,escala:document.getElementById('f-escala').value,tipo:document.getElementById('f-tipo').value,solicitante:document.getElementById('f-solicitante').value,responsavel:document.getElementById('f-responsavel').value,secao:document.getElementById('f-secao').value,qtd,tamanho:document.getElementById('f-tamanho').value,tamCustom:document.getElementById('f-tam-custom').value,projeto:document.getElementById('f-projeto').value,papel:document.getElementById('f-papel').value,finalidade:document.getElementById('f-finalidade').value,criadoEm:new Date().toISOString()});
-    toast('✔ Impressão salva!','#0a6b4a');window.limparForm();
-  }catch(e){toast('❌ Erro ao salvar','#c0392b');}
+    toast('OK Impressão salva!','#0a6b4a');window.limparForm();
+  }catch(e){toast('X Erro ao salvar','#c0392b');}
 }
 window.limparForm=function(){
   ['f-nome','f-mi','f-solicitante','f-responsavel','f-secao','f-finalidade','f-tam-custom'].forEach(id=>document.getElementById(id).value='');
@@ -622,7 +623,7 @@ window.limparForm=function(){
 window.deletar=async function(id){
   if(!confirm('Remover este registro?'))return;
   try{await deleteDoc(doc(db,'impressoes',id));toast('Registro removido');}
-  catch(e){toast('❌ Erro ao remover','#c0392b');}
+  catch(e){toast('X Erro ao remover','#c0392b');}
 }
 window.abrirEdicao=function(id){
   const d=dados.find(x=>x.id===id);if(!d)return;
@@ -647,12 +648,12 @@ window.fecharModal=function(){document.getElementById('modal-overlay').classList
 window.salvarEdicao=async function(){
   if(!editandoId)return;
   const data=document.getElementById('e-data').value;
-  if(!data){toast('⚠ Informe a data','#c0392b');return;}
+  if(!data){toast('! Informe a data','#c0392b');return;}
   const qtd=parseInt(document.getElementById('e-qtd').value)||0;
   try{
     await updateDoc(doc(db,'impressoes',editandoId),{data,nome:document.getElementById('e-nome').value,mi:document.getElementById('e-mi').value,escala:document.getElementById('e-escala').value,tipo:document.getElementById('e-tipo').value,solicitante:document.getElementById('e-solicitante').value,responsavel:document.getElementById('e-responsavel').value,secao:document.getElementById('e-secao').value,qtd,tamanho:document.getElementById('e-tamanho').value,tamCustom:document.getElementById('e-tam-custom').value,projeto:document.getElementById('e-projeto').value,papel:document.getElementById('e-papel').value,finalidade:document.getElementById('e-finalidade').value});
-    toast('✔ Registro atualizado!','#0a6b4a');window.fecharModal();
-  }catch(e){toast('❌ Erro ao salvar','#c0392b');}
+    toast('OK Registro atualizado!','#0a6b4a');window.fecharModal();
+  }catch(e){toast('X Erro ao salvar','#c0392b');}
 }
 
 function renderHistorico(){
@@ -675,14 +676,14 @@ function renderHistorico(){
       <thead><tr><th>Data</th><th>Nome</th><th>MI</th><th>Tipo</th><th>Solicitante</th><th>Responsável</th><th>Qtd</th><th>Tamanho</th><th>Projeto</th><th>Papel</th><th>Ações</th></tr></thead>
       <tbody>${reg.map(d=>`<tr>
         <td>${d.data.split('-').reverse().join('/')}</td>
-        <td style="max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${d.nome||''}">${d.nome||'—'}</td>
-        <td style="max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;color:#666" title="${d.mi||''}">${d.mi||'—'}</td>
-        <td>${d.tipo||'—'}</td><td>${d.solicitante||'—'}</td><td>${d.responsavel||'—'}</td>
-        <td><strong>${d.qtd}</strong></td><td>${d.tamCustom||d.tamanho||'—'}</td>
-        <td><span class="badge ${d.projeto==='PIT'?'badge-pit':'badge-extra'}">${d.projeto||'—'}</span></td>
-        <td><span class="badge ${d.papel==='COMUM'?'badge-comum':d.papel==='FOTOGRÁFICO'?'badge-foto':'badge-adesivo'}">${d.papel||'—'}</span></td>
+        <td style="max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${d.nome||''}">${d.nome||'-'}</td>
+        <td style="max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;color:#666" title="${d.mi||''}">${d.mi||'-'}</td>
+        <td>${d.tipo||'-'}</td><td>${d.solicitante||'-'}</td><td>${d.responsavel||'-'}</td>
+        <td><strong>${d.qtd}</strong></td><td>${d.tamCustom||d.tamanho||'-'}</td>
+        <td><span class="badge ${d.projeto==='PIT'?'badge-pit':'badge-extra'}">${d.projeto||'-'}</span></td>
+        <td><span class="badge ${d.papel==='COMUM'?'badge-comum':d.papel==='FOTOGRÁFICO'?'badge-foto':'badge-adesivo'}">${d.papel||'-'}</span></td>
         <td style="display:flex;gap:4px">
-          <button class="btn btn-edit" onclick="window.abrirEdicao('${d.id}')">✏</button>
+          <button class="btn btn-edit" onclick="window.abrirEdicao('${d.id}')"></button>
           <button class="btn btn-danger" onclick="window.deletar('${d.id}')">🗑</button>
         </td>
       </tr>`).join('')}</tbody>
@@ -690,13 +691,13 @@ function renderHistorico(){
 }
 window.renderHistorico=renderHistorico;
 
-function tbl(rows,total){return`<table><thead><tr><th>Descrição</th><th style="text-align:right">Qtd</th><th style="text-align:right">%</th></tr></thead><tbody>${rows.map(([k,v])=>`<tr><td>${k||'—'}</td><td style="text-align:right;font-weight:600">${v}</td><td style="text-align:right;color:#aaa">${total?Math.round(v/total*100):0}%</td></tr>`).join('')}</tbody></table>`;}
+function tbl(rows,total){return`<table><thead><tr><th>Descrição</th><th style="text-align:right">Qtd</th><th style="text-align:right">%</th></tr></thead><tbody>${rows.map(([k,v])=>`<tr><td>${k||'-'}</td><td style="text-align:right;font-weight:600">${v}</td><td style="text-align:right;color:#aaa">${total?Math.round(v/total*100):0}%</td></tr>`).join('')}</tbody></table>`;}
 
 function montarBalanco(reg,titulo,ano,mostrarEvolucao){
   const total=reg.reduce((s,d)=>s+(d.qtd||0),0);
   const pit=reg.filter(d=>d.projeto==='PIT').reduce((s,d)=>s+(d.qtd||0),0);
-  const agg=campo=>{const m={};reg.forEach(d=>{const k=d[campo]||'—';m[k]=(m[k]||0)+(d.qtd||0);});return Object.entries(m).sort((a,b)=>b[1]-a[1]);};
-  const aggTam=()=>{const m={};reg.forEach(d=>{const k=d.tamCustom||d.tamanho||'—';m[k]=(m[k]||0)+(d.qtd||0);});return Object.entries(m).sort((a,b)=>b[1]-a[1]);};
+  const agg=campo=>{const m={};reg.forEach(d=>{const k=d[campo]||'-';m[k]=(m[k]||0)+(d.qtd||0);});return Object.entries(m).sort((a,b)=>b[1]-a[1]);};
+  const aggTam=()=>{const m={};reg.forEach(d=>{const k=d.tamCustom||d.tamanho||'-';m[k]=(m[k]||0)+(d.qtd||0);});return Object.entries(m).sort((a,b)=>b[1]-a[1]);};
   return`<div style="font-size:16px;font-weight:700;margin-bottom:16px">Balanço: ${titulo}</div>
     <div class="stat-grid">
       <div class="stat"><div class="stat-label">Total geral</div><div class="stat-value">${total.toLocaleString('pt-BR')}</div></div>
@@ -713,7 +714,7 @@ function montarBalanco(reg,titulo,ano,mostrarEvolucao){
       <div class="summary-table"><div class="summary-header">Por seção</div>${tbl(agg('secao'),total)}</div>
     </div>
     <div class="summary-table"><div class="summary-header">Por solicitante</div>${tbl(agg('solicitante'),total)}</div>
-    ${mostrarEvolucao&&ano?`<div class="summary-table" style="margin-top:14px"><div class="summary-header">Evolução mensal — ${ano}</div>
+    ${mostrarEvolucao&&ano?`<div class="summary-table" style="margin-top:14px"><div class="summary-header">Evolução mensal - ${ano}</div>
       <table><thead><tr><th>Mês</th><th style="text-align:right">Total</th><th style="text-align:right">PIT</th><th style="text-align:right">Extra PIT</th><th style="text-align:right">Registros</th></tr></thead>
       <tbody>${MESES.map((m,i)=>{const mr=filtrar(ano,i+1);const mt=mr.reduce((s,d)=>s+(d.qtd||0),0);const mp=mr.filter(d=>d.projeto==='PIT').reduce((s,d)=>s+(d.qtd||0),0);return`<tr><td><strong>${m}</strong></td><td style="text-align:right;font-weight:600">${mt||0}</td><td style="text-align:right">${mp||0}</td><td style="text-align:right">${mt-mp||0}</td><td style="text-align:right;color:#aaa">${mr.length||0}</td></tr>`;}).join('')}
       <tr style="background:#f0f0f8"><td><strong>TOTAL</strong></td><td style="text-align:right;font-weight:700">${total}</td><td style="text-align:right;font-weight:700">${pit}</td><td style="text-align:right;font-weight:700">${total-pit}</td><td style="text-align:right;color:#aaa">${reg.length}</td></tr>
@@ -739,7 +740,7 @@ window.exportarCSV=function(modo){
   const blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'});
   const url=URL.createObjectURL(blob);const a=document.createElement('a');
   a.href=url;a.download=`balanco_${titulo}.csv`;a.click();URL.revokeObjectURL(url);
-  toast('✔ Exportado!','#0a6b4a');
+  toast('OK Exportado!','#0a6b4a');
 }
 
 // ========= INSUMOS =========
@@ -759,7 +760,7 @@ function renderInsumos(){
       <div class="plotter-modelo">${p.modelo}</div>
       <div class="plotter-status"><span class="status-dot ${dotClass}"></span><span class="badge ${badgeClass}">${statusLabel}</span></div>
       ${pd.obs?`<div style="font-size:11px;color:#888;margin-bottom:12px">${pd.obs}</div>`:''}
-      <button class="btn btn-sm" onclick="window.abrirModalPlotter('${p.id}','${p.nome}')">✏ Alterar status</button>
+      <button class="btn btn-sm" onclick="window.abrirModalPlotter('${p.id}','${p.nome}')"> Alterar status</button>
     </div>`;
   }).join('');
 
@@ -829,7 +830,7 @@ function renderInsumos(){
     }).join('');
   }
 
-  // Total simples (sem genéricos) — para genéricos
+  // Total simples (sem genéricos) - para genéricos
   function renderTintasTotal(listaDgeo, listaAlmo, containerId, genDgeo=null, genAlmo=null){
     document.getElementById(containerId).innerHTML=listaDgeo.map((t,i)=>{
       const dgeo=getQtd(t.id);
@@ -873,10 +874,10 @@ function renderConsumo(){
     <thead><tr><th>Data</th><th>Insumo</th><th>Tipo</th><th>Qtd</th><th>Observação</th></tr></thead>
     <tbody>${movs.map(m=>`<tr>
       <td>${m.data.split('-').reverse().join('/')}</td>
-      <td>${m.nome||'—'}</td>
+      <td>${m.nome||'-'}</td>
       <td><span class="badge ${m.tipo==='entrada'?'badge-ok':'badge-inativa'}">${m.tipo==='entrada'?'Entrada':'Saída'}</span></td>
       <td><strong>${m.qtd}</strong></td>
-      <td style="color:#888">${m.obs||'—'}</td>
+      <td style="color:#888">${m.obs||'-'}</td>
     </tr>`).join('')}</tbody>
   </table>`;
 }
@@ -897,7 +898,7 @@ window.salvarMovimentacao=async function(){
   if(!movInsumoId)return;
   const tipo=document.getElementById('mov-tipo').value;
   const qtd=parseInt(document.getElementById('mov-qtd').value)||0;
-  if(!qtd){toast('⚠ Informe a quantidade','#c0392b');return;}
+  if(!qtd){toast('! Informe a quantidade','#c0392b');return;}
   const data=document.getElementById('mov-data').value;
   const obs=document.getElementById('mov-obs').value;
   // Atualizar estoque
@@ -908,10 +909,10 @@ window.salvarMovimentacao=async function(){
     await salvarEstoque();
     const nomeInsumo=document.getElementById('modal-insumo-title').textContent.split(' - ')[1];
     await addDoc(colMov,{insumoId:movInsumoId,nome:nomeInsumo,tipo,qtd,data,obs,criadoEm:new Date().toISOString()});
-    toast(tipo==='entrada'?'✔ Entrada registrada!':'✔ Saída registrada!','#0a6b4a');
+    toast(tipo==='entrada'?'OK Entrada registrada!':'OK Saída registrada!','#0a6b4a');
     window.fecharModalInsumo();
     renderInsumos();
-  }catch(e){toast('❌ Erro ao salvar','#c0392b');}
+  }catch(e){toast('X Erro ao salvar','#c0392b');}
 }
 
 window.abrirModalPlotter=function(id,nome){
@@ -928,10 +929,10 @@ window.salvarStatusPlotter=async function(){
   plotterData[plotterEditId]={status:document.getElementById('plt-status').value,obs:document.getElementById('plt-obs').value};
   try{
     await salvarPlotters();
-    toast('✔ Status atualizado!','#0a6b4a');
+    toast('OK Status atualizado!','#0a6b4a');
     window.fecharModalPlotter();
     renderInsumos();
-  }catch(e){toast('❌ Erro ao salvar','#c0392b');}
+  }catch(e){toast('X Erro ao salvar','#c0392b');}
 }
 
 document.getElementById('f-data').value=new Date().toISOString().slice(0,10);
