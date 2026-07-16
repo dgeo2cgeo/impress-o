@@ -247,54 +247,43 @@ tr:hover td{background:#f8f8fc}
     </div>
   </div>
 
-  <!-- TINTAS GENÉRICAS -->
-  <div class="section-title">🎨 Cartuchos Genéricos — Compatível com T930, T2530 e T2600DR</div>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px">
-    <div class="insumo-card">
-      <div class="insumo-header"><span>DGEO</span></div>
-      <div id="tintas-gen-dgeo"></div>
-    </div>
-    <div class="insumo-card">
-      <div class="insumo-header"><span>Almoxarifado</span></div>
-      <div id="tintas-gen-almo"></div>
-    </div>
-    <div class="insumo-card">
-      <div class="insumo-header" style="color:#3c3a8e;font-weight:700"><span>Total Geral (DGEO + Almoxarifado)</span></div>
-      <div id="tintas-gen-total"></div>
-    </div>
+  <!-- CARTUCHOS - VISÃO POR TIPO -->
+  <div class="section-title">🎨 Estoque de Cartuchos — Por Tipo</div>
+
+  <!-- GENÉRICO -->
+  <div style="font-size:13px;font-weight:600;color:#555;margin-bottom:8px;padding-left:2px">Genérico — Entra em todas as plotters (T930, T2530 e T2600DR)</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px">
+    <div class="insumo-card"><div class="insumo-header"><span>DGEO</span></div><div id="tintas-gen-dgeo"></div></div>
+    <div class="insumo-card"><div class="insumo-header"><span>Almoxarifado</span></div><div id="tintas-gen-almo"></div></div>
+    <div class="insumo-card"><div class="insumo-header" style="color:#3c3a8e;font-weight:700"><span>Total Genérico</span></div><div id="tintas-gen-total"></div></div>
   </div>
 
-  <!-- TINTAS TIPO B -->
-  <div class="section-title">🎨 Cartuchos Tipo B — HP T930 / T2530 (B3PxxA)</div>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px">
-    <div class="insumo-card">
-      <div class="insumo-header"><span>DGEO</span></div>
-      <div id="tintas-b-dgeo"></div>
-    </div>
-    <div class="insumo-card">
-      <div class="insumo-header"><span>Almoxarifado</span></div>
-      <div id="tintas-b-almo"></div>
-    </div>
-    <div class="insumo-card">
-      <div class="insumo-header" style="color:#3c3a8e;font-weight:700"><span>Total Geral (B + Genéricos)</span></div>
-      <div id="tintas-b-total"></div>
-    </div>
+  <!-- TIPO B -->
+  <div style="font-size:13px;font-weight:600;color:#555;margin-bottom:8px;padding-left:2px">Tipo B (B3PxxA) — Exclusivo para T930 e T2530</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px">
+    <div class="insumo-card"><div class="insumo-header"><span>DGEO</span></div><div id="tintas-b-dgeo"></div></div>
+    <div class="insumo-card"><div class="insumo-header"><span>Almoxarifado</span></div><div id="tintas-b-almo"></div></div>
+    <div class="insumo-card"><div class="insumo-header" style="color:#3c3a8e;font-weight:700"><span>Total Tipo B</span></div><div id="tintas-b-total"></div></div>
   </div>
 
-  <!-- TINTAS TIPO P -->
-  <div class="section-title">🎨 Cartuchos Tipo P — HP T2600DR (P2VxxA)</div>
+  <!-- TIPO P -->
+  <div style="font-size:13px;font-weight:600;color:#555;margin-bottom:8px;padding-left:2px">Tipo P (P2VxxA) — Exclusivo para T2600DR</div>
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px">
+    <div class="insumo-card"><div class="insumo-header"><span>DGEO</span></div><div id="tintas-p-dgeo"></div></div>
+    <div class="insumo-card"><div class="insumo-header"><span>Almoxarifado</span></div><div id="tintas-p-almo"></div></div>
+    <div class="insumo-card"><div class="insumo-header" style="color:#3c3a8e;font-weight:700"><span>Total Tipo P</span></div><div id="tintas-p-total"></div></div>
+  </div>
+
+  <!-- CARTUCHOS - VISÃO POR PLOTTER -->
+  <div class="section-title">🖨 Disponível por Plotter (inclui genéricos)</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
     <div class="insumo-card">
-      <div class="insumo-header"><span>DGEO</span></div>
-      <div id="tintas-p-dgeo"></div>
+      <div class="insumo-header" style="background:#eeedfb;color:#3c3a8e;font-weight:700"><span>HP T930 / T2530 — Tipo B + Genérico</span></div>
+      <div id="tintas-plotter-b"></div>
     </div>
     <div class="insumo-card">
-      <div class="insumo-header"><span>Almoxarifado</span></div>
-      <div id="tintas-p-almo"></div>
-    </div>
-    <div class="insumo-card">
-      <div class="insumo-header" style="color:#3c3a8e;font-weight:700"><span>Total Geral (P + Genéricos)</span></div>
-      <div id="tintas-p-total"></div>
+      <div class="insumo-header" style="background:#e0f5ec;color:#0a6b4a;font-weight:700"><span>HP T2600DR — Tipo P + Genérico</span></div>
+      <div id="tintas-plotter-p"></div>
     </div>
   </div>
 
@@ -852,11 +841,33 @@ function renderInsumos(){
 
   renderTintas(TINTAS_B_DGEO,'tintas-b-dgeo');
   renderTintas(TINTAS_B_ALMO,'tintas-b-almo');
-  renderTintasTotal(TINTAS_B_DGEO, TINTAS_B_ALMO, 'tintas-b-total', TINTAS_GEN_DGEO, TINTAS_GEN_ALMO);
+  renderTintasTotal(TINTAS_B_DGEO, TINTAS_B_ALMO, 'tintas-b-total');
 
   renderTintas(TINTAS_P_DGEO,'tintas-p-dgeo');
   renderTintas(TINTAS_P_ALMO,'tintas-p-almo');
-  renderTintasTotal(TINTAS_P_DGEO, TINTAS_P_ALMO, 'tintas-p-total', TINTAS_GEN_DGEO, TINTAS_GEN_ALMO);
+  renderTintasTotal(TINTAS_P_DGEO, TINTAS_P_ALMO, 'tintas-p-total');
+
+  // VISAO POR PLOTTER
+  function renderPorPlotter(listaEsp, containerId){
+    const cores = listaEsp.map((t,i)=>{
+      const espDgeo = getQtd(t.id);
+      const espAlmo = getQtd(listaEsp === TINTAS_B_DGEO ? TINTAS_B_ALMO[i].id : TINTAS_P_ALMO[i].id);
+      const genDgeo = getQtd(TINTAS_GEN_DGEO[i].id);
+      const genAlmo = getQtd(TINTAS_GEN_ALMO[i].id);
+      const total = espDgeo + espAlmo + genDgeo + genAlmo;
+      const cor = total===0?'#c0392b':total<=3?'#e67e22':'#0a6b4a';
+      const nomeCor = t.nome.split(' (')[0];
+      return `<div class="insumo-row">
+        <span style="width:12px;height:12px;border-radius:50%;background:${t.cor};display:inline-block;margin-right:6px;flex-shrink:0"></span>
+        <span class="insumo-nome" style="flex:1">${nomeCor}</span>
+        <span style="font-size:11px;color:#aaa;margin-right:8px">Esp: ${espDgeo+espAlmo} | Gen: ${genDgeo+genAlmo}</span>
+        <span class="insumo-qtd" style="color:${cor};font-size:18px;font-weight:700">${total}</span>
+      </div>`;
+    });
+    document.getElementById(containerId).innerHTML = cores.join('');
+  }
+  renderPorPlotter(TINTAS_B_DGEO, 'tintas-plotter-b');
+  renderPorPlotter(TINTAS_P_DGEO, 'tintas-plotter-p');
 
   renderConsumo();
 }
