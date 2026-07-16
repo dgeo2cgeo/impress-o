@@ -120,7 +120,7 @@ tr:hover td{background:#f8f8fc}
   <button class="tab" onclick="switchTab('balanco')">📄 Balanço Mensal</button>
   <button class="tab" onclick="switchTab('anual')">📄 Balanço Anual</button>
   <button class="tab" onclick="switchTab('periodo')">📄 Período Personalizado</button>
-  <button class="tab" onclick="switchTab('insumos')">🖨️ Insumos</button>
+  <button class="tab" onclick="switchTab('insumos')">🖨 Insumos</button>
 </div>
 
 <!-- PAINEL -->
@@ -227,7 +227,7 @@ tr:hover td{background:#f8f8fc}
 <!-- INSUMOS -->
 <div id="tab-insumos" class="pane">
   <!-- PLOTTERS -->
-  <div class="section-title">🖨️ Situação Operacional das Plotters</div>
+  <div class="section-title">🖨 Situação Operacional das Plotters</div>
   <div class="plotter-grid" id="plotter-grid"></div>
 
   <!-- PAPÉIS -->
@@ -313,7 +313,7 @@ tr:hover td{background:#f8f8fc}
 <!-- MODAL EDIÇÃO IMPRESSÃO -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal">
-    <div class="modal-title">✏️ Editar Impressão</div>
+    <div class="modal-title">✏ Editar Impressão</div>
     <div class="form-grid">
       <div class="form-group"><label>Data *</label><input type="date" id="e-data"></div>
       <div class="form-group"><label>Nome</label><input type="text" id="e-nome"></div>
@@ -381,7 +381,7 @@ tr:hover td{background:#f8f8fc}
     <div class="form-group" style="margin-bottom:16px"><label>Status</label>
       <select id="plt-status">
         <option value="ok">✅ Funcionando</option>
-        <option value="manutencao">⚠️ Em manutenção</option>
+        <option value="manutencao">⚠ Em manutenção</option>
         <option value="inativa">❌ Inativa</option>
       </select>
     </div>
@@ -682,7 +682,7 @@ function renderHistorico(){
         <td><span class="badge ${d.projeto==='PIT'?'badge-pit':'badge-extra'}">${d.projeto||'—'}</span></td>
         <td><span class="badge ${d.papel==='COMUM'?'badge-comum':d.papel==='FOTOGRÁFICO'?'badge-foto':'badge-adesivo'}">${d.papel||'—'}</span></td>
         <td style="display:flex;gap:4px">
-          <button class="btn btn-edit" onclick="window.abrirEdicao('${d.id}')">✏️</button>
+          <button class="btn btn-edit" onclick="window.abrirEdicao('${d.id}')">✏</button>
           <button class="btn btn-danger" onclick="window.deletar('${d.id}')">🗑</button>
         </td>
       </tr>`).join('')}</tbody>
@@ -759,7 +759,7 @@ function renderInsumos(){
       <div class="plotter-modelo">${p.modelo}</div>
       <div class="plotter-status"><span class="status-dot ${dotClass}"></span><span class="badge ${badgeClass}">${statusLabel}</span></div>
       ${pd.obs?`<div style="font-size:11px;color:#888;margin-bottom:12px">${pd.obs}</div>`:''}
-      <button class="btn btn-sm" onclick="window.abrirModalPlotter('${p.id}','${p.nome}')">✏️ Alterar status</button>
+      <button class="btn btn-sm" onclick="window.abrirModalPlotter('${p.id}','${p.nome}')">✏ Alterar status</button>
     </div>`;
   }).join('');
 
