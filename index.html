@@ -887,26 +887,27 @@ function renderInsumos(){
   renderTintasTotal(TINTAS_P_DGEO, TINTAS_P_ALMO, 'tintas-p-total');
 
   // VISAO POR PLOTTER
-  function renderPorPlotter(listaEsp, containerId){
+  function renderPorPlotter(listaEsp, listaEspAlmo, containerId, prioridadeImpar){
     const cores = listaEsp.map((t,i)=>{
       const espDgeo = getQtd(t.id);
-      const espAlmo = getQtd(listaEsp === TINTAS_B_DGEO ? TINTAS_B_ALMO[i].id : TINTAS_P_ALMO[i].id);
-      const genDgeo = getQtd(TINTAS_GEN_DGEO[i].id);
-      const genAlmo = getQtd(TINTAS_GEN_ALMO[i].id);
-      const total = espDgeo + espAlmo + genDgeo + genAlmo;
+      const espAlmo = getQtd(listaEspAlmo[i].id);
+      const genTotal = getQtd(TINTAS_GEN_DGEO[i].id) + getQtd(TINTAS_GEN_ALMO[i].id);
+      // Dividir genéricos: T930/T2530 leva a metade maior quando ímpar
+      const genEsta = prioridadeImpar ? Math.ceil(genTotal/2) : Math.floor(genTotal/2);
+      const total = espDgeo + espAlmo + genEsta;
       const cor = total===0?'#c0392b':total<=3?'#e67e22':'#0a6b4a';
       const nomeCor = t.nome.split(' (')[0];
       return `<div class="insumo-row">
         <span style="width:12px;height:12px;border-radius:50%;background:${t.cor};display:inline-block;margin-right:6px;flex-shrink:0"></span>
         <span class="insumo-nome" style="flex:1">${nomeCor}</span>
-        <span style="font-size:11px;color:#aaa;margin-right:8px">Esp: ${espDgeo+espAlmo} | Gen: ${genDgeo+genAlmo}</span>
+        <span style="font-size:11px;color:#aaa;margin-right:8px">Esp: ${espDgeo+espAlmo} | Gen: ${genEsta}</span>
         <span class="insumo-qtd" style="color:${cor};font-size:18px;font-weight:700">${total}</span>
       </div>`;
     });
     document.getElementById(containerId).innerHTML = cores.join('');
   }
-  renderPorPlotter(TINTAS_B_DGEO, 'tintas-plotter-b');
-  renderPorPlotter(TINTAS_P_DGEO, 'tintas-plotter-p');
+  renderPorPlotter(TINTAS_B_DGEO, TINTAS_B_ALMO, 'tintas-plotter-b', true);
+  renderPorPlotter(TINTAS_P_DGEO, TINTAS_P_ALMO, 'tintas-plotter-p', false);
 
   renderConsumo();
 }
