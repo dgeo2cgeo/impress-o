@@ -493,7 +493,7 @@ function toast(msg,cor='#1a1a2e'){const t=document.getElementById('toast');t.tex
 // Listeners Firebase
 onSnapshot(query(col,orderBy("data","desc")),snap=>{
   dados=snap.docs.map(d=>({id:d.id,...d.data()}));
-  setStatus('✅ Conectado — dados sincronizados em tempo real');
+  setStatus('Conectado - dados sincronizados em tempo real');
   const total=dados.reduce((s,d)=>s+(d.qtd||0),0);
   document.getElementById('header-total').textContent=total?`${total.toLocaleString('pt-BR')} impressões`:'';
   popularSelects();
@@ -884,7 +884,7 @@ window.renderConsumo=renderConsumo;
 
 window.abrirMovimentacao=function(id,nome,tipo){
   movInsumoId=id;
-  document.getElementById('modal-insumo-title').textContent=(tipo==='entrada'?'➕ Entrada':'➖ Saída')+' — '+nome;
+  document.getElementById('modal-insumo-title').textContent=(tipo==='entrada'?'+ Entrada':'- Saida')+' - '+nome;
   document.getElementById('mov-tipo').value=tipo;
   document.getElementById('mov-qtd').value=1;
   document.getElementById('mov-data').value=new Date().toISOString().slice(0,10);
@@ -906,7 +906,7 @@ window.salvarMovimentacao=async function(){
   estoqueData[movInsumoId]=novo;
   try{
     await salvarEstoque();
-    const nomeInsumo=document.getElementById('modal-insumo-title').textContent.split(' — ')[1];
+    const nomeInsumo=document.getElementById('modal-insumo-title').textContent.split(' - ')[1];
     await addDoc(colMov,{insumoId:movInsumoId,nome:nomeInsumo,tipo,qtd,data,obs,criadoEm:new Date().toISOString()});
     toast(tipo==='entrada'?'✔ Entrada registrada!':'✔ Saída registrada!','#0a6b4a');
     window.fecharModalInsumo();
@@ -917,7 +917,7 @@ window.salvarMovimentacao=async function(){
 window.abrirModalPlotter=function(id,nome){
   plotterEditId=id;
   const pd=plotterData[id]||{status:'ok',obs:''};
-  document.getElementById('modal-plotter-title').textContent='✏️ Alterar status — '+nome;
+  document.getElementById('modal-plotter-title').textContent='Alterar status - '+nome;
   document.getElementById('plt-status').value=pd.status||'ok';
   document.getElementById('plt-obs').value=pd.obs||'';
   document.getElementById('modal-plotter').classList.add('active');
