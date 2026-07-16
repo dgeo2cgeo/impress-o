@@ -247,33 +247,6 @@ tr:hover td{background:#f8f8fc}
     </div>
   </div>
 
-  <!-- CARTUCHOS - VISÃO POR TIPO -->
-  <div class="section-title">🎨 Estoque de Cartuchos — Por Tipo</div>
-
-  <!-- GENÉRICO -->
-  <div style="font-size:13px;font-weight:600;color:#555;margin-bottom:8px;padding-left:2px">Genérico — Entra em todas as plotters (T930, T2530 e T2600DR)</div>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px">
-    <div class="insumo-card"><div class="insumo-header"><span>DGEO</span></div><div id="tintas-gen-dgeo"></div></div>
-    <div class="insumo-card"><div class="insumo-header"><span>Almoxarifado</span></div><div id="tintas-gen-almo"></div></div>
-    <div class="insumo-card"><div class="insumo-header" style="color:#3c3a8e;font-weight:700"><span>Total Genérico</span></div><div id="tintas-gen-total"></div></div>
-  </div>
-
-  <!-- TIPO B -->
-  <div style="font-size:13px;font-weight:600;color:#555;margin-bottom:8px;padding-left:2px">Tipo B (B3PxxA) — Exclusivo para T930 e T2530</div>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px">
-    <div class="insumo-card"><div class="insumo-header"><span>DGEO</span></div><div id="tintas-b-dgeo"></div></div>
-    <div class="insumo-card"><div class="insumo-header"><span>Almoxarifado</span></div><div id="tintas-b-almo"></div></div>
-    <div class="insumo-card"><div class="insumo-header" style="color:#3c3a8e;font-weight:700"><span>Total Tipo B</span></div><div id="tintas-b-total"></div></div>
-  </div>
-
-  <!-- TIPO P -->
-  <div style="font-size:13px;font-weight:600;color:#555;margin-bottom:8px;padding-left:2px">Tipo P (P2VxxA) — Exclusivo para T2600DR</div>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px">
-    <div class="insumo-card"><div class="insumo-header"><span>DGEO</span></div><div id="tintas-p-dgeo"></div></div>
-    <div class="insumo-card"><div class="insumo-header"><span>Almoxarifado</span></div><div id="tintas-p-almo"></div></div>
-    <div class="insumo-card"><div class="insumo-header" style="color:#3c3a8e;font-weight:700"><span>Total Tipo P</span></div><div id="tintas-p-total"></div></div>
-  </div>
-
   <!-- CARTUCHOS - VISÃO POR PLOTTER -->
   <div class="section-title">🖨 Disponível por Plotter (inclui genéricos)</div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
@@ -285,6 +258,34 @@ tr:hover td{background:#f8f8fc}
       <div class="insumo-header" style="background:#e0f5ec;color:#0a6b4a;font-weight:700"><span>HP T2600DR — Tipo P + Genérico</span></div>
       <div id="tintas-plotter-p"></div>
     </div>
+  </div>
+
+  <!-- CARTUCHOS - VISÃO POR TIPO -->
+  <div class="section-title">🎨 Estoque de Cartuchos — Por Tipo</div>
+
+
+  <!-- TIPO B -->
+  <div style="font-size:13px;font-weight:600;color:#555;margin-bottom:8px;padding-left:2px">Tipo B (B3PxxA) — Exclusivo para T930 e T2530</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px">
+    <div class="insumo-card"><div class="insumo-header"><span>DGEO</span></div><div id="tintas-b-dgeo"></div></div>
+    <div class="insumo-card"><div class="insumo-header"><span>Almoxarifado</span></div><div id="tintas-b-almo"></div></div>
+    <div class="insumo-card"><div class="insumo-header" style="color:#3c3a8e;font-weight:700"><span>Total Tipo B</span></div><div id="tintas-b-total"></div></div>
+  </div>
+
+  <!-- TIPO P -->
+  <div style="font-size:13px;font-weight:600;color:#555;margin-bottom:8px;padding-left:2px">Tipo P (P2VxxA) — Exclusivo para T2600DR</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px">
+    <div class="insumo-card"><div class="insumo-header"><span>DGEO</span></div><div id="tintas-p-dgeo"></div></div>
+    <div class="insumo-card"><div class="insumo-header"><span>Almoxarifado</span></div><div id="tintas-p-almo"></div></div>
+    <div class="insumo-card"><div class="insumo-header" style="color:#3c3a8e;font-weight:700"><span>Total Tipo P</span></div><div id="tintas-p-total"></div></div>
+  </div>
+
+  <!-- GENÉRICO -->
+  <div style="font-size:13px;font-weight:600;color:#555;margin-bottom:8px;padding-left:2px">Genérico — Entra em todas as plotters (T930, T2530 e T2600DR)</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px">
+    <div class="insumo-card"><div class="insumo-header"><span>DGEO</span></div><div id="tintas-gen-dgeo"></div></div>
+    <div class="insumo-card"><div class="insumo-header"><span>Almoxarifado</span></div><div id="tintas-gen-almo"></div></div>
+    <div class="insumo-card"><div class="insumo-header" style="color:#3c3a8e;font-weight:700"><span>Total Genérico</span></div><div id="tintas-gen-total"></div></div>
   </div>
 
   <!-- CONSUMO MENSAL -->
@@ -342,9 +343,47 @@ tr:hover td{background:#f8f8fc}
 <div class="modal-overlay" id="modal-insumo">
   <div class="modal">
     <div class="modal-title" id="modal-insumo-title">Movimentação de Estoque</div>
+
+    <!-- Campos extras para cartucho de tinta -->
+    <div id="mov-cartucho-fields" style="display:none;margin-bottom:14px;padding:12px;background:#f5f5fd;border-radius:8px;border:1px solid #e0e0f0">
+      <div style="font-size:12px;font-weight:600;color:#3c3a8e;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.05em">Informações do Cartucho</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div class="form-group">
+          <label>Tipo de cartucho</label>
+          <select id="mov-cart-tipo" onchange="window.atualizarCamposCartucho()">
+            <option value="gen">Genérico (todas as plotters)</option>
+            <option value="b">Tipo B — T930 / T2530 (B3PxxA)</option>
+            <option value="p">Tipo P — T2600DR (P2VxxA)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Cor</label>
+          <select id="mov-cart-cor">
+            <option value="mb">Matte Black</option>
+            <option value="pb">Photo Black</option>
+            <option value="gr">Gray</option>
+            <option value="ye">Yellow</option>
+            <option value="cy">Cyan</option>
+            <option value="ma">Magenta</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Local de armazenamento</label>
+          <select id="mov-cart-local">
+            <option value="dgeo">DGEO</option>
+            <option value="almo">Almoxarifado</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Código do cartucho</label>
+          <input type="text" id="mov-cart-codigo" readonly style="background:#eee;color:#888">
+        </div>
+      </div>
+    </div>
+
     <div class="form-grid" style="grid-template-columns:1fr 1fr">
-      <div class="form-group"><label>Tipo</label>
-        <select id="mov-tipo"><option value="entrada">➕ Entrada</option><option value="saida">➖ Saída</option></select>
+      <div class="form-group"><label>Movimento</label>
+        <select id="mov-tipo"><option value="entrada">+ Entrada</option><option value="saida">- Saida</option></select>
       </div>
       <div class="form-group"><label>Quantidade</label>
         <input type="number" id="mov-qtd" min="1" value="1">
@@ -357,7 +396,7 @@ tr:hover td{background:#f8f8fc}
       </div>
     </div>
     <div class="modal-btns">
-      <button class="btn btn-primary" onclick="window.salvarMovimentacao()">✔ Confirmar</button>
+      <button class="btn btn-primary" onclick="window.salvarMovimentacao()">OK Confirmar</button>
       <button class="btn" onclick="window.fecharModalInsumo()">Cancelar</button>
     </div>
   </div>
@@ -894,36 +933,86 @@ function renderConsumo(){
 }
 window.renderConsumo=renderConsumo;
 
+let movEhCartucho = false;
+
 window.abrirMovimentacao=function(id,nome,tipo){
   movInsumoId=id;
+  movEhCartucho = id.startsWith('t');
   document.getElementById('modal-insumo-title').textContent=(tipo==='entrada'?'+ Entrada':'- Saida')+' - '+nome;
   document.getElementById('mov-tipo').value=tipo;
   document.getElementById('mov-qtd').value=1;
   document.getElementById('mov-data').value=new Date().toISOString().slice(0,10);
   document.getElementById('mov-obs').value='';
+
+  // Mostrar campos extras se for cartucho de tinta
+  const cartFields = document.getElementById('mov-cartucho-fields');
+  if(movEhCartucho){
+    cartFields.style.display='block';
+    // Pré-preencher com base no id clicado
+    const partes = id.split('_'); // ex: tb_mb_dgeo => tipo=b, cor=mb, local=dgeo
+    const tipoCart = partes[0].replace('t',''); // gen, b ou p
+    const corCart = partes[1];
+    const localCart = partes[2];
+    document.getElementById('mov-cart-tipo').value = tipoCart;
+    document.getElementById('mov-cart-cor').value = corCart;
+    document.getElementById('mov-cart-local').value = localCart;
+    window.atualizarCamposCartucho();
+  } else {
+    cartFields.style.display='none';
+  }
   document.getElementById('modal-insumo').classList.add('active');
+}
+
+// Mapa de códigos dos cartuchos
+const CODIGOS = {
+  b: { mb:'B3P22A', pb:'B3P23A', gr:'B3P24A', ye:'B3P21A', cy:'B3P19A', ma:'B3P20A' },
+  p: { mb:'P2V65A', pb:'P2V67A', gr:'P2V72A', ye:'P2V64A', cy:'P2V62A', ma:'P2V63A' },
+  gen: { mb:'Genérico', pb:'Genérico', gr:'Genérico', ye:'Genérico', cy:'Genérico', ma:'Genérico' }
+};
+
+window.atualizarCamposCartucho = function(){
+  const tipo = document.getElementById('mov-cart-tipo').value;
+  const cor = document.getElementById('mov-cart-cor').value;
+  const codigos = CODIGOS[tipo] || CODIGOS['gen'];
+  document.getElementById('mov-cart-codigo').value = codigos[cor] || '';
+  // Atualizar o ID do insumo com base na seleção
+  const local = document.getElementById('mov-cart-local').value;
+  const prefix = tipo === 'gen' ? 'tg' : tipo === 'b' ? 'tb' : 'tp';
+  movInsumoId = prefix + '_' + cor + '_' + local;
 }
 window.fecharModalInsumo=function(){document.getElementById('modal-insumo').classList.remove('active');movInsumoId=null;}
 
 window.salvarMovimentacao=async function(){
+  if(movEhCartucho){ window.atualizarCamposCartucho(); }
   if(!movInsumoId)return;
   const tipo=document.getElementById('mov-tipo').value;
   const qtd=parseInt(document.getElementById('mov-qtd').value)||0;
   if(!qtd){toast('! Informe a quantidade','#c0392b');return;}
   const data=document.getElementById('mov-data').value;
   const obs=document.getElementById('mov-obs').value;
-  // Atualizar estoque
   const atual=getQtd(movInsumoId);
   const novo=tipo==='entrada'?atual+qtd:Math.max(0,atual-qtd);
   estoqueData[movInsumoId]=novo;
   try{
     await salvarEstoque();
-    const nomeInsumo=document.getElementById('modal-insumo-title').textContent.split(' - ')[1];
+    let nomeInsumo;
+    if(movEhCartucho){
+      const corEl=document.getElementById('mov-cart-cor');
+      const tipoEl=document.getElementById('mov-cart-tipo');
+      const localEl=document.getElementById('mov-cart-local');
+      const codigo=document.getElementById('mov-cart-codigo').value;
+      const corNome=corEl.options[corEl.selectedIndex].text;
+      const tipoNome=tipoEl.value==='gen'?'Generico':tipoEl.value==='b'?'Tipo B':'Tipo P';
+      const localNome=localEl.value==='dgeo'?'DGEO':'Almoxarifado';
+      nomeInsumo=corNome+' '+codigo+' ('+tipoNome+' - '+localNome+')';
+    } else {
+      nomeInsumo=document.getElementById('modal-insumo-title').textContent.split(' - ').slice(1).join(' - ');
+    }
     await addDoc(colMov,{insumoId:movInsumoId,nome:nomeInsumo,tipo,qtd,data,obs,criadoEm:new Date().toISOString()});
-    toast(tipo==='entrada'?'OK Entrada registrada!':'OK Saída registrada!','#0a6b4a');
+    toast(tipo==='entrada'?'Entrada registrada!':'Saida registrada!','#0a6b4a');
     window.fecharModalInsumo();
     renderInsumos();
-  }catch(e){toast('X Erro ao salvar','#c0392b');}
+  }catch(e){toast('Erro ao salvar','#c0392b');}
 }
 
 window.abrirModalPlotter=function(id,nome){
